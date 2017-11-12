@@ -3,6 +3,7 @@ package lili.tesla.leongardtest.presentation.screen.results.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -39,6 +40,6 @@ public class ResultsActivity extends BaseActivity implements ResultsView {
 
     @Override
     public void showResults(String sResults) {
-        mTextviewResults.setText(sResults);
+        mTextviewResults.setText(Html.fromHtml(sResults));
     }
 }

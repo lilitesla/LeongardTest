@@ -51,19 +51,52 @@ public class DataBaseAccess {
 
         Cursor cursor = database.rawQuery("SELECT index_id, question FROM Leongard_Test_Questions ORDER BY index_id", str);
 
-            cursor.moveToFirst();
-            Question question = new Question(cursor.getInt(0), cursor.getString(1));
+        cursor.moveToFirst();
+        Question question = new Question(cursor.getInt(0), cursor.getString(1));
+        questionsList.add(question);
+
+        while (cursor.moveToNext()) {
+            question = new Question(cursor.getInt(0), cursor.getString(1));
             questionsList.add(question);
-
-            while (cursor.moveToNext()) {
-                question = new Question(cursor.getInt(0), cursor.getString(1));
-                questionsList.add(question);
-            }
-
+        }
 
         cursor.close();
         close();
         return questionsList;
+    }
+
+    public String getScale(int index_id, int col) {
+        open();
+
+        String result = "";
+        String colName = "";
+        String level = "";
+
+        String[] str = new String[1];
+        str[0] = "" + (index_id + 1);
+
+        if (col < 7) {
+            colName = "low";
+            level = "низкое";
+        } else {
+            if (col > 18) {
+                colName = "high";
+                level = "<font color=red>высокое</font>";
+            } else {
+                colName = "medium";
+                level = "среднее";
+            }
+        }
+
+        Cursor cursor = database.rawQuery("SELECT name, " + colName + " FROM Leongard_Test_Results WHERE id = ?", str);
+        cursor.moveToFirst();
+
+        result = "<b>" + cursor.getString(0) + ": " + col + "</b> (" + level + ") <br>" + cursor.getString(1) + "<br><br>";
+
+        cursor.close();
+        close();
+        return result;
+
     }
 
 
