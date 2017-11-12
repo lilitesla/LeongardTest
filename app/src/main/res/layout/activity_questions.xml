@@ -1,9 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     tools:context="lili.tesla.leongardtest.presentation.screen.questions.view.QuestionsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/button_text_back"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/ll_question">
+
+        <TextView
+            android:id="@+id/textview_question_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Вопрос: 1 из 88"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/textview_question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Текст вопроса"
+            android:gravity="center"
+            android:textSize="24sp"
+            android:textColor="@color/teal"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_answers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/button_text_yes"
+                android:id="@+id/button_yes"/>
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/button_text_no"
+                android:id="@+id/button_no"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_text_go_to_result"
+            android:visibility="gone"
+            android:id="@+id/button_go_to_result"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

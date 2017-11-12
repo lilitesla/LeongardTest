@@ -17,5 +17,9 @@
 
     <string name="description_text">Вам предлагается ответить «да» или «нет» на 88 вопросов, касающихся различных сторон вашей личности.
         Отвечайте быстро, долго не задумывайтесь.</string>
+    <string name="button_text_yes">Да</string>
+    <string name="button_text_no">Нет</string>
+    <string name="button_text_back">Вернуться к предыдущему вопросу</string>
+    <string name="button_text_go_to_result">Перейти к результатам</string>
 
 </resources>

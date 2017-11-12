@@ -9,6 +9,10 @@ import lili.tesla.leongardtest.presentation.screen.questions.view.QuestionsView;
 
 public class QuestionsPresenter extends BasePresenter<QuestionsView> {
 
+    public void startResultsScreen() {
 
+        mView.startResultsScreen();
+
+    }
 
 }

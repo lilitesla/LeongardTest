@@ -10,6 +10,7 @@ import butterknife.OnClick;
 import lili.tesla.leongardtest.R;
 import lili.tesla.leongardtest.presentation.screen.base.BaseActivity;
 import lili.tesla.leongardtest.presentation.screen.description.presenter.DescriptionPresenter;
+import lili.tesla.leongardtest.presentation.screen.questions.view.QuestionsActivity;
 
 public class DescriptionActivity extends BaseActivity implements DescriptionView {
 
@@ -45,8 +46,6 @@ public class DescriptionActivity extends BaseActivity implements DescriptionView
 
     @Override
     public void startQuestionsScreen() {
-
-
-
+        QuestionsActivity.start(this);
     }
 }

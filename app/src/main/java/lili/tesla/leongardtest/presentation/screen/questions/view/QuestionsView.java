@@ -6,4 +6,6 @@ package lili.tesla.leongardtest.presentation.screen.questions.view;
 
 public interface QuestionsView {
 
+    void startResultsScreen();
+
 }

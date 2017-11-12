@@ -12,7 +12,6 @@ public class DescriptionPresenter extends BasePresenter<DescriptionView> {
 
     public void startQuestionsScreen() {
 
-        App.questions.clear();
         mView.startQuestionsScreen();
 
     }
