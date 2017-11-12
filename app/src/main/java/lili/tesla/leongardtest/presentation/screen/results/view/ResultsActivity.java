@@ -3,6 +3,9 @@ package lili.tesla.leongardtest.presentation.screen.results.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import lili.tesla.leongardtest.R;
 import lili.tesla.leongardtest.presentation.screen.base.BaseActivity;
@@ -19,6 +22,8 @@ public class ResultsActivity extends BaseActivity implements ResultsView {
 
     private ResultsPresenter mPresenter;
 
+    @BindView(R.id.textview_results) TextView mTextviewResults;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +33,12 @@ public class ResultsActivity extends BaseActivity implements ResultsView {
         mPresenter = new ResultsPresenter();
         mPresenter.setView(this);
 
+        mPresenter.showResults();
+
+    }
+
+    @Override
+    public void showResults(String sResults) {
+        mTextviewResults.setText(sResults);
     }
 }

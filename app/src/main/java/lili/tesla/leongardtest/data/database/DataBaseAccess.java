@@ -44,23 +44,29 @@ public class DataBaseAccess {
 
     public List<Question> getQuestions() {
         open();
+
+        String[] str = {};
+
         List<Question> questionsList = new ArrayList<>();
 
-        Cursor cursor = database.rawQuery("SELECT id, question FROM Leongard_Test_Questions ORDER BY id", new String[0]);
+        Cursor cursor = database.rawQuery("SELECT index_id, question FROM Leongard_Test_Questions ORDER BY index_id", str);
 
-        cursor.moveToFirst();
-        Question question = new Question(cursor.getInt(0), cursor.getString(1));
-        questionsList.add(question);
-
-        while (cursor.moveToNext()) {
-            question = new Question(cursor.getInt(0), cursor.getString(1));
+            cursor.moveToFirst();
+            Question question = new Question(cursor.getInt(0), cursor.getString(1));
             questionsList.add(question);
-        }
+
+            while (cursor.moveToNext()) {
+                question = new Question(cursor.getInt(0), cursor.getString(1));
+                questionsList.add(question);
+            }
+
 
         cursor.close();
         close();
         return questionsList;
     }
+
+
 
 
 

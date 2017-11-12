@@ -5,4 +5,5 @@ package lili.tesla.leongardtest.presentation.screen.results.view;
  */
 
 public interface ResultsView {
+    void showResults(String sResults);
 }

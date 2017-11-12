@@ -9,4 +9,14 @@ import lili.tesla.leongardtest.presentation.screen.results.view.ResultsView;
 
 public class ResultsPresenter extends BasePresenter<ResultsView> {
 
+    public void showResults() {
+
+        String sResult = "";
+
+
+
+
+        mView.showResults(sResult);
+    }
+
 }

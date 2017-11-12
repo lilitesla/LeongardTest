@@ -8,4 +8,10 @@ public interface QuestionsView {
 
     void startResultsScreen();
 
+    void changeQuestion(String sNum, String sQuestion);
+
+    void makeButtonResultVisible();
+
+    void makeQuestionsVisible();
+
 }

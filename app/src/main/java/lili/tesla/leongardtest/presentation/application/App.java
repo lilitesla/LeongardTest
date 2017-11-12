@@ -30,7 +30,9 @@ public class App extends Application {
         }
 
         dataBaseAccess = new DataBaseAccess(this);
+
         questions = new ArrayList<>();
+        questions = dataBaseAccess.getQuestions();
 
     }
 
