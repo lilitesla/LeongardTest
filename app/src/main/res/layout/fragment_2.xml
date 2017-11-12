@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview_caption_about"
+        android:text="@string/about_test_caption"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/teal"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textview_caption_about"
+        android:layout_above="@+id/textNum2">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textview_description_about"
+            android:text="@string/about_test"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"/>
+
+    </ScrollView>
+
+
+    <TextView
+        android:id="@id/textNum2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="2 из 2"/>
+
+</RelativeLayout>
