@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_below="@id/textview_result_caption">
+        android:layout_below="@id/textview_result_caption"
+        android:layout_above="@+id/button_back_to_main">
 
         <TextView
             android:id="@+id/textview_results"
@@ -29,6 +30,14 @@
             android:textSize="18sp" />
 
     </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@id/button_back_to_main"
+        android:layout_alignParentBottom="true"
+        android:text="Вернуться на главную"/>
+
 
 
 

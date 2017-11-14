@@ -1,5 +1,8 @@
 package lili.tesla.leongardtest.presentation.screen.results.presenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lili.tesla.leongardtest.presentation.application.App;
 import lili.tesla.leongardtest.presentation.screen.base.BasePresenter;
 import lili.tesla.leongardtest.presentation.screen.results.view.ResultsView;
@@ -11,11 +14,16 @@ import lili.tesla.leongardtest.presentation.screen.results.view.ResultsView;
 public class ResultsPresenter extends BasePresenter<ResultsView> {
 
     private int[] scales = new int[10];
+    private List<String> listPairs = new ArrayList<>();
     private final String sTextColor = "#00BCD4";
 
     private int colLow;
     private int colMedium;
     private int colHigh;
+
+    public void showDescriptionScreen() {
+        mView.showDescriptionScreen();
+    }
 
     public void showResults() {
 
@@ -23,8 +31,6 @@ public class ResultsPresenter extends BasePresenter<ResultsView> {
         findAllLevels();
 
         String sResult = "";
-
-        sResult += "<FONT COLOR=" + sTextColor + "><b>Анализ профиля</b><br><br></font>";
 
         if ((colHigh == 1) || (colHigh == 2)) {
             sResult += "На общем «ровном» фоне средних и низких показателей выделяется одно или два ярко выраженных значения." +
@@ -52,15 +58,70 @@ public class ResultsPresenter extends BasePresenter<ResultsView> {
 
         }
 
+        if (sResult != "") {
+            sResult = "<FONT COLOR=" + sTextColor + "><b>Анализ профиля</b><br><br></font>" + sResult;
+        }
+
         sResult += "<FONT COLOR=" + sTextColor + "><b>Значения шкал</b><br><br></font>";
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             sResult += App.dataBaseAccess.getScale(i, scales[i]);
         }
 
-        sResult += "<FONT COLOR=" + sTextColor + "><b>Сочетания типов</b><br><br></font>";
+        if (colHigh > 1) {
+            findAllPaires();
+            String sPairs = "";
+
+            for (int i = 0; i < listPairs.size(); i++) {
+                sPairs += App.dataBaseAccess.getPair(listPairs.get(i));
+            }
+
+            if (sPairs != "") {
+                sResult += "<FONT COLOR=" + sTextColor + "><b>Сочетания типов</b><br><br></font>" + sPairs;
+            }
+        }
 
         mView.showResults(sResult);
+    }
+
+    private void findAllPaires() {
+
+        for (int i = 0; i < 9; i++) {
+            if (scales[i] > 18 ) {
+                for (int j = i + 1; j < 10; j++) {
+                    if (scales[j] > 18 ) {
+                        listPairs.add(j + "" + i);
+                    }
+                }
+            }
+        }
+
+        if (listPairs.contains("51")||listPairs.contains("50")||listPairs.contains("10")) {
+            listPairs.add("510");
+        }
+
+        if (listPairs.contains("52")||listPairs.contains("50")||listPairs.contains("20")) {
+            listPairs.add("520");
+        }
+
+        if (listPairs.contains("85")||listPairs.contains("80")||listPairs.contains("50")) {
+            listPairs.add("850");
+        }
+
+        if (listPairs.contains("75")||listPairs.contains("73")||listPairs.contains("53")) {
+            listPairs.remove("73");
+            listPairs.add("753");
+        }
+
+        if (listPairs.contains("86")||listPairs.contains("84")||listPairs.contains("64")) {
+            listPairs.remove("64");
+            listPairs.add("864");
+        }
+
+        if (listPairs.contains("510")||listPairs.contains("520")||listPairs.contains("850")) {
+            listPairs.remove("50");
+        }
+
     }
 
     private void findAllLevels() {
@@ -89,7 +150,6 @@ public class ResultsPresenter extends BasePresenter<ResultsView> {
         }
 
         String[] scale_positive = new String[] {
-                " 6 18 28 40 50 62 72 84 ",
                 " 7 19 22 29 41 44 63 66 73 85 88 ",
                 " 2 15 24 34 37 56 68 78 81 ",
                 " 4 14 17 26 39 48 58 61 70 80 83 ",
@@ -98,7 +158,8 @@ public class ResultsPresenter extends BasePresenter<ResultsView> {
                 " 9 21 43 75 87 ",
                 " 16 27 38 49 60 71 82 ",
                 " 10 32 54 76 ",
-                " 3 13 35 47 57 69 79 "};
+                " 3 13 35 47 57 69 79 ",
+                " 6 18 28 40 50 62 72 84 "};
 
         String[] scale_negative = new String[] {
                 " 51 ",
@@ -118,7 +179,7 @@ public class ResultsPresenter extends BasePresenter<ResultsView> {
             if (App.questions.get(i).isAnswer()) {
 
                 for (int j = 0; j < 10; j++) {
-                    if (scale_positive[j].contains(" " + i + " ")) {
+                    if (scale_positive[j].contains(" " + (i + 1) + " ")) {
                         scales[j] ++;
                     }
                 }
@@ -126,7 +187,7 @@ public class ResultsPresenter extends BasePresenter<ResultsView> {
             } else {
 
                 for (int j = 0; j < 10; j++) {
-                    if (scale_negative[j].contains(" " + i + " ")) {
+                    if (scale_negative[j].contains(" " + (i + 1) + " ")) {
                         scales[j] ++;
                     }
                 }
@@ -138,7 +199,7 @@ public class ResultsPresenter extends BasePresenter<ResultsView> {
         for (int i = 3; i < 7; i++) { scales[i] *= 3; }
         scales[7] *= 6;
         scales[8] *= 3;
-        scales[9  ] *= 3;
+        scales[9] *= 3;
 
     }
 

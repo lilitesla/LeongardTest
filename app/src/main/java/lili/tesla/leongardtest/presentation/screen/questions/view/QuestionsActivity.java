@@ -24,6 +24,9 @@ import lili.tesla.leongardtest.presentation.screen.results.view.ResultsActivity;
 
 public class QuestionsActivity extends BaseActivity implements QuestionsView {
 
+    public static final String KEY_QUESTION_NUM = "QUESTION_NUM";
+    public static final String KEY_IS_BUTTON_RESULT_VISIBLE = "IS_BUTTON_RESULT_VISIBLE";
+
     public static void start(Context context ) {
         Intent intent = new Intent(context, QuestionsActivity.class);
         Bundle bundle = new Bundle();
@@ -50,6 +53,12 @@ public class QuestionsActivity extends BaseActivity implements QuestionsView {
         mPresenter = new QuestionsPresenter();
         mPresenter.setView(this);
 
+        if (savedInstanceState != null) {
+            mPresenter.questionNum = savedInstanceState.getInt(KEY_QUESTION_NUM, 0);
+            mPresenter.isButtonResultsVisible = savedInstanceState.getBoolean(KEY_IS_BUTTON_RESULT_VISIBLE, false);
+        }
+
+        mPresenter.questionNum --;
         mPresenter.changeQuestion();
     }
 
@@ -103,4 +112,11 @@ public class QuestionsActivity extends BaseActivity implements QuestionsView {
 
     @OnClick(R.id.button_back)
     void backClicked() { mPresenter.setBack(); }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_QUESTION_NUM, mPresenter.questionNum);
+        outState.putBoolean(KEY_IS_BUTTON_RESULT_VISIBLE, mPresenter.isButtonResultsVisible);
+    }
 }

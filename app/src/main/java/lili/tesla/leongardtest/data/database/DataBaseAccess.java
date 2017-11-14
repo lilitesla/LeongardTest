@@ -96,7 +96,31 @@ public class DataBaseAccess {
         cursor.close();
         close();
         return result;
+    }
 
+    public String getPair(String index_id) {
+        open();
+
+        String[] str = new String[1];
+        str[0] = index_id;
+
+        Cursor cursor = database.rawQuery("SELECT description FROM Leongard_Test_Pairs WHERE index_id = ?", str);
+        cursor.moveToFirst();
+
+        String result = "";
+
+        if (cursor.getCount() > 0) {
+            result = cursor.getString(0);
+
+            if (result.length() < 10)  {
+                result = "";
+            } else {
+                result += "<br><br>";
+            }
+        }
+        cursor.close();
+        close();
+        return result;
     }
 
 

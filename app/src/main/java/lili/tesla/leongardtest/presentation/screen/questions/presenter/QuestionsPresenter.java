@@ -10,8 +10,8 @@ import lili.tesla.leongardtest.presentation.screen.questions.view.QuestionsView;
 
 public class QuestionsPresenter extends BasePresenter<QuestionsView> {
 
-    private int questionNum = -1;
-    private boolean isButtonResultsVisible = false;
+    public int questionNum = 0;
+    public boolean isButtonResultsVisible = false;
 
     public void startResultsScreen() {
         mView.startResultsScreen();

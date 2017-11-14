@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import lili.tesla.leongardtest.R;
 import lili.tesla.leongardtest.presentation.screen.base.BaseActivity;
 import lili.tesla.leongardtest.presentation.screen.results.presenter.ResultsPresenter;
@@ -41,5 +42,15 @@ public class ResultsActivity extends BaseActivity implements ResultsView {
     @Override
     public void showResults(String sResults) {
         mTextviewResults.setText(Html.fromHtml(sResults));
+    }
+
+    @Override
+    public void showDescriptionScreen() {
+        finish();
+    }
+
+    @OnClick (R.id.button_back_to_main)
+    void onBackMainClick() {
+        mPresenter.showDescriptionScreen();
     }
 }
